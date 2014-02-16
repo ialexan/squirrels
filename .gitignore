@@ -1,0 +1,7 @@
+.svn
+.git
+build.properties
+.classpath
+.project
+.settings
+target

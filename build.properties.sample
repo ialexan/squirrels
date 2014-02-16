@@ -1,0 +1,8 @@
+log.dir=/Temp/squirrels/logs
+log.level=debug
+
+app.file.dir=/home/ialexan/data/squirrels/files
+
+db.url=jdbc:postgresql://localhost:5432/squirrels
+db.username=ialexan
+db.password=
