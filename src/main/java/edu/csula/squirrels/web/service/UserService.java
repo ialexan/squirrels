@@ -38,14 +38,10 @@ public class UserService {
         @RequestParam String firstName, @RequestParam String username, 
         ModelMap models )
     {
-        User user = userDao.getUser( email );
+        User user = userDao.getUser( username );
         String result = "";
         
-        if( user != null )
-        {
-            result = "user already exists";
-        }
-        else
+        if( user == null )
         {
             user = new User();
             user.setEmail( email );
@@ -55,8 +51,10 @@ public class UserService {
             user.setUsername(username);
             user.getRoles().add("REGULAR_USER");
             user = userDao.saveUser( user );
-            result = "user registered";
+            result = "user registered";            
         }
+        else
+        	result = "user already exists";
 
         models.put( "user", result );
         return "jsonView";
@@ -69,14 +67,10 @@ public class UserService {
         @RequestParam String firstName, @RequestParam String username, 
         ModelMap models )
     {
-        User user = userDao.getUser( email );
+        User user = userDao.getUser( username );
         String result = "";
         
-        if( user != null )
-        {
-            result = "user already exists";
-        }
-        else
+        if( user == null )
         {
             user = new User();
             user.setEmail( email );
@@ -88,8 +82,10 @@ public class UserService {
             user = userDao.saveUser( user );
             result = "user registered";
         }
+        else
+            result = "user already exists";
         
-        List<User> userList = userDao.getUserList();
+       List<User> userList = userDao.getUserList();
         
        for (User userRow : userList){
     	   
