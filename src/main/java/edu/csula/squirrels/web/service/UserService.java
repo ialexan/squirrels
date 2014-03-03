@@ -38,7 +38,7 @@ public class UserService {
         @RequestParam String firstName, @RequestParam String username, 
         ModelMap models )
     {
-        User user = userDao.getUser( username );
+        User user = userDao.getUser( username, email );
         String result = "";
         
         if( user == null )
