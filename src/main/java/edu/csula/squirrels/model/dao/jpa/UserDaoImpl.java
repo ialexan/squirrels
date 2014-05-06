@@ -43,6 +43,18 @@ public class UserDaoImpl implements UserDao {
     }
     
     @Override
+    public User getUser( String username, String email )
+    {
+    	String query = "from User where username = :username or email = :email";	
+    	
+        List<User> users = entityManager.createQuery( query, User.class )
+            .setParameter( "username", username )
+            .setParameter( "email", email )
+            .getResultList();
+        return users.size() == 0 ? null : users.get( 0 );
+    }
+    
+    @Override
     public User getUserByPassword( String username, String password){
     	String query = "from User where username = :username and password = :password";	
     	

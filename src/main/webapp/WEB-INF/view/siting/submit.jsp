@@ -41,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="<c:url value='/'/>" >California Tree Squirrel Application</a>
+          <a class="navbar-brand" href="<c:url value='/'/>" >California Squirrel Application</a>
         </div>
         <div class="navbar-collapse collapse">
           
