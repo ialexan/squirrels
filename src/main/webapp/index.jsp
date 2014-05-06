@@ -104,7 +104,7 @@
 
       <div id="footer">
       	<div class="container">
-        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; More Information &nbsp;&nbsp; | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a></p>
+        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; More Information &nbsp;&nbsp; | &nbsp;&nbsp; <security:authorize access="hasRole('ROLE_APPROVER')"> <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
       	</div>
       </div>
       
