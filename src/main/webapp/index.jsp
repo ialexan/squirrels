@@ -75,7 +75,12 @@
     <div class="jumbotron">
       <div class="container">
         <h1>Squirrel!</h1>
-        <p>California Squirrel project is a research project conducted by Dr Alan Muchlinski's group of students from Biology, Geology and Computer Science departments in CSULA. If you spot a squirrel in California, you can help us gather squirrel data.</p>
+        <p>
+          The California Tree Squirrel Study is a research project conducted by Dr Alan Muchlinski and an interdisciplinary group of faculty 
+          and students from California State University, Los Angeles. Faculty and students are from the Departments of Biological Sciences, 
+          Computer Science, and Geosciences and the Environment. If you see a tree squirrel anywhere in California you can help us gather data 
+          for this study by using the CaliTreeSquirrel application on your android smart phone.
+        </p>
         <p><a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
         <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
         <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a></p>
