@@ -82,11 +82,11 @@
           for this study by using the CaliTreeSquirrel application on your android smart phone.
         </p>
         <p>
-        <security:authorize access="hasRole('REGULAR_USER', 'APPROVER', 'ADMIN')">
+        <security:authorize access="hasAnyRole('REGULAR_USER', 'APPROVER', 'ADMIN')">
         <a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
         </security:authorize>
         
-        <security:authorize access="hasRole('APPROVER', 'ADMIN')">
+        <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">
         <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
         <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a>
         </security:authorize>
@@ -116,7 +116,7 @@
 
       <div id="footer">
       	<div class="container">
-        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; <security:authorize access="hasRole('APPROVER', 'ADMIN')"> <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
+        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')"> <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
       	</div>
       </div>
       
