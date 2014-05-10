@@ -82,8 +82,11 @@
           for this study by using the CaliTreeSquirrel application on your android smart phone.
         </p>
         <p><a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
+        <security:authorize access="hasRole('APPROVER')">
         <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
-        <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a></p>
+        <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a>
+        </security:authorize>
+        </p>
       </div>
     </div>
 
