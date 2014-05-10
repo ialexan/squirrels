@@ -81,7 +81,11 @@
           Computer Science, and Geosciences and the Environment. If you see a tree squirrel anywhere in California you can help us gather data 
           for this study by using the CaliTreeSquirrel application on your android smart phone.
         </p>
-        <p><a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
+        <p>
+        <security:authorize access="hasRole('REGULAR_USER')">
+        <a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
+        </security:authorize>
+        
         <security:authorize access="hasRole('APPROVER')">
         <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
         <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a>
