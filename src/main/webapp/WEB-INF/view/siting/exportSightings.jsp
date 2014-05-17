@@ -28,6 +28,7 @@
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
     
+	
   </head>
 
   <body>
@@ -74,18 +75,18 @@
 
 <h2>Export Squirrel Sightings</h2>    
 <br>    
-<form class="form-horizontal" role="form" id="siting" action="<c:url value='/service/siting/submit' />" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" id="siting" action="<c:url value='/siting/exportSightings' />" method="post" enctype="multipart/form-data">
 
 
   <div class="form-group">
-    <label for="timestamp" class="col-sm-2 control-label">Start Time</label>
+    <label for="starttime" class="col-sm-2 control-label">Start Time</label>
     <div class="col-sm-10">
       <input id="starttime" name="starttime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
     </div>
   </div>
 
   <div class="form-group">
-    <label for="timestamp" class="col-sm-2 control-label">End Time</label>
+    <label for="endtime" class="col-sm-2 control-label">End Time</label>
     <div class="col-sm-10">
       <input id="endtime" name="endtime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
     </div>
