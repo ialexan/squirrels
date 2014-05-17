@@ -30,6 +30,13 @@ public class SitingController {
 		return "siting/verified";
 	}
 
+	@RequestMapping("/siting/exportSightings")
+	public String exportSightings( ModelMap models )
+	{
+		models.put( "sitings", sitingDao.getVerifiedSitings() );
+		return "siting/exportSightings";
+	}
+	
 	@RequestMapping(value = "/siting/submit", method = RequestMethod.GET) 
 	public String sightingsubmit( ModelMap models )
 	{
