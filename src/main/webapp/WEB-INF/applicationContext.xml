@@ -57,8 +57,14 @@
             access="permitAll" />
         <security:intercept-url pattern="/mobileservice/siting/submit"
             access="permitAll" /> 
-        <security:intercept-url pattern="/siting/**"
-            access="authenticated" />
+        <!-- <security:intercept-url pattern="/siting/**"
+            access="authenticated" /> -->
+        <security:intercept-url pattern="/siting/submit/**" access="authenticated" /> 
+        <security:intercept-url pattern="/siting/unverified/**" access="hasAnyRole('APPROVER', 'ADMIN')" />  
+        <security:intercept-url pattern="/siting/verified/**" access="hasAnyRole('APPROVER', 'ADMIN')" />  
+        <security:intercept-url pattern="/siting/verified/**" access="hasAnyRole('APPROVER', 'ADMIN')" />  
+        <security:intercept-url pattern="/siting/exportSightings/**" access="hasAnyRole('APPROVER', 'ADMIN')" /> 
+        <security:intercept-url pattern="/user/management/**" access="hasAnyRole('APPROVER', 'ADMIN')" /> 
     </security:http>
 
     <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
@@ -68,5 +74,7 @@
     <context:component-scan base-package="edu.csula.squirrels">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
+
+    <!-- <global-method-security pre-post-annotations="enabled" /> -->
 
 </beans>

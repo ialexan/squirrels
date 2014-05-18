@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.security.access.annotation.Secured;
 
 import edu.csula.squirrels.model.dao.SitingDao;
 
@@ -23,7 +22,6 @@ public class SitingController {
 	private SitingDao sitingDao;
 
 	// Listing unverified list
-	@Secured({ "ADMIN","APPROVER" })
 	@RequestMapping("/siting/unverified")
 	public String unverified( ModelMap models )
 	{
@@ -32,7 +30,6 @@ public class SitingController {
 	}
 	
 	// Listing verified list
-	@Secured({ "ADMIN","APPROVER" })
 	@RequestMapping("/siting/verified")
 	public String verified( ModelMap models )
 	{
@@ -44,14 +41,12 @@ public class SitingController {
 
 	
 	// Exporting Sightings
-	@Secured({ "ADMIN","APPROVER" })
 	@RequestMapping( value = "/siting/exportSightings", method = RequestMethod.GET)
 	public String exportSightings( )
 	{
 		return "siting/exportSightings";
 	}
 	
-	@Secured({ "ADMIN","APPROVER" })
 	@RequestMapping( value =  "/siting/exportSightings", method = RequestMethod.POST)
 	public String exportSightings(  ModelMap models, @RequestParam String starttime, 
 			@RequestParam String endtime, @RequestParam(required = false) boolean verifiedcheckbox ) throws Exception
