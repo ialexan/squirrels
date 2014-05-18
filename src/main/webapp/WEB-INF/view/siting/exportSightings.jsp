@@ -75,20 +75,20 @@
 
 <h2>Export Squirrel Sightings</h2>    
 <br>    
-<form class="form-horizontal" role="form" id="siting" action="<c:url value='/siting/exportSightings' />" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" id="siting" action="<c:url value='/siting/exportSightings' />" method="post">
 
 
   <div class="form-group">
     <label for="starttime" class="col-sm-2 control-label">Start Time</label>
     <div class="col-sm-10">
-      <input id="starttime" name="starttime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
+      <input name="starttime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
     </div>
   </div>
 
   <div class="form-group">
     <label for="endtime" class="col-sm-2 control-label">End Time</label>
     <div class="col-sm-10">
-      <input id="endtime" name="endtime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
+      <input name="endtime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
     </div>
   </div>
 
@@ -96,7 +96,7 @@
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <label> <input id="verifiedcheckbox" type="checkbox"> VerifiedSitingsOnly  &nbsp;&nbsp;&nbsp;</label>	
+      <label> <input name="verifiedcheckbox" type="checkbox"> VerifiedSitingsOnly  &nbsp;&nbsp;&nbsp;</label>	
       <button type="submit" name="submit" value="Submit" class="btn btn-default">Submit</button>
     </div>
   </div>

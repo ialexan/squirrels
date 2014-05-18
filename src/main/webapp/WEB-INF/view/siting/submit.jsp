@@ -74,7 +74,7 @@
 
 <h2>Submit A Squirrel Sighting</h2>    
     
-<form class="form-horizontal" role="form" id="siting" action="<c:url value='/service/siting/submit' />" method="post" enctype="multipart/form-data">
+<form class="form-horizontal" role="form" id="siting" action="<c:url value='/service/siting/submit' />" method="post">
   <div class="form-group">
     <label for="species" class="col-sm-2 control-label">Species</label>
     <div class="col-sm-10">

@@ -76,7 +76,7 @@
 
 
 
-<form id="squirrelphoto" action="<c:url value='/service/siting/submitphoto' />" method="post" enctype="multipart/form-data">
+<form id="squirrelphoto" action="<c:url value='/service/siting/submitphoto' />" method="post">
 <table>
 <tr>
   <th>Squirrel Picture</th>
