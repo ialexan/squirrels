@@ -13,6 +13,12 @@
 
     <title>California Tree Squirrel</title>
 
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.js"></script>
+
+
     <!-- Bootstrap core CSS -->
     <link href="<c:url value='/css/bootstrap.css' />" rel="stylesheet">
 
@@ -27,7 +33,13 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    
+
+     <script>
+      $(function() {
+        $( "#datepicker1" ).datepicker({ dateFormat: "yy-mm-dd" }).val();
+        $( "#datepicker2" ).datepicker({ dateFormat: "yy-mm-dd" }).val();
+      });
+     </script>
 	
   </head>
 
@@ -81,14 +93,14 @@
   <div class="form-group">
     <label for="starttime" class="col-sm-2 control-label">Start Time</label>
     <div class="col-sm-10">
-      <input name="starttime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
+      <input type="text" name="starttime" placeholder="yyyy-MM-dd" class="form-control" id="datepicker1">
     </div>
   </div>
 
   <div class="form-group">
     <label for="endtime" class="col-sm-2 control-label">End Time</label>
     <div class="col-sm-10">
-      <input name="endtime" placeholder="yyyy-MM-dd" value="2013-09-19" class="form-control" >
+      <input type="text" name="endtime" placeholder="yyyy-MM-dd" class="form-control" id="datepicker2">
     </div>
   </div>
 
@@ -122,7 +134,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="<c:url value='/js/jquery-1.js' />" ></script>
+    <!--<script src="<c:url value='/js/jquery-1.js' />" ></script>-->
     <script src="<c:url value='/js/bootstrap.js' />"></script>
   
 
