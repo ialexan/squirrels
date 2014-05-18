@@ -48,14 +48,22 @@ public class SitingDaoImpl implements SitingDao {
     @Override
     public List<Siting> getSitingsToExport(Date starttime, Date endtime, boolean verifiedcheckbox)
     {
-        String query = "from Siting where (timestamp BETWEEN starttime and endtime) and rejected is false order by timestamp desc";
+        String query = "from Siting where timestamp >= :starttime and timestamp <= :endtime and rejected is false order by timestamp desc";
         
         if (verifiedcheckbox)
         { 
-            query = "from Siting where (timestamp BETWEEN starttime and endtime) and verifiedBy is not null and rejected is false order by timestamp desc";
+            query = "from Siting where timestamp >= :starttime and timestamp <= :endtime and verifiedBy is not null and rejected is false order by timestamp desc";
         }
 
-        return entityManager.createQuery( query, Siting.class ).getResultList();
+
+        List<Siting> sightings =  entityManager
+                            .createQuery( query, Siting.class )
+                            .setParameter( "starttime", starttime )
+                            .setParameter( "endtime", endtime )
+                            .getResultList();
+        
+        
+        return sightings;
     }
 
     @Override
