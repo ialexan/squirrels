@@ -109,7 +109,7 @@
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <label> <input name="verifiedcheckbox" type="checkbox"> VerifiedSitingsOnly  &nbsp;&nbsp;&nbsp;</label>	
-      <button type="submit" name="submit" value="Submit" class="btn btn-default">Submit</button>
+      <button type="submit" name="submit" value="Download" class="btn btn-default">Download</button>
     </div>
   </div>
 </form>
