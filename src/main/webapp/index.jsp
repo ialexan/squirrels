@@ -82,9 +82,11 @@
           for this study by using the CaliTreeSquirrel application on your android smart phone.
         </p>
         <p>
+        <!--
         <security:authorize access="hasAnyRole('REGULAR_USER', 'APPROVER', 'ADMIN')">
         <a href="<c:url value='/siting/submit'/>" class="btn btn-primary btn-lg" role="button">Submit a Sighting</a>
         </security:authorize>
+        -->
         
         <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">
         <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>

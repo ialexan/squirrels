@@ -29,71 +29,6 @@
     <![endif]-->
     
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-
-<script>
-$(document).ready(function() {   
-	
-
-   
-      
-    /* Edit User Accounts */
-    
-var editUser = '<form class="form-horizontal" role="form">' +
-'<div class="form-group">' +
-'<label for="editusername" class="col-sm-2 control-label">Username</label>' +
-'<div class="col-sm-10">' +
-'<input type="text" name="editusername" id="editusername" class="form-control">' +
-'</div></div>' +
-'<div class="form-group">' +
-'<label for="editpassword" class="col-sm-2 control-label">Password</label>' +
-'<div class="col-sm-10">' +
-'<input type="password" name="editpassword" id="editpassword" class="form-control">' +
-'</div></div>' + 
-'<div class="form-group">' +
-'<label for="editfirstname" class="col-sm-2 control-label">First Name</label>' +
-'<div class="col-sm-10">' +
-'<input type="text" name="editfirstname" id="editfirstname" class="form-control">' +
-'</div></div>' +
-'<div class="form-group">' +
-'<label for="editlastname" class="col-sm-2 control-label">Last Name</label>' +
-'<div class="col-sm-10">' +
-'<input type="text" name="editlastname" id="editlastname" class="form-control">' +
-'</div></div>' +
-'<div class="form-group">' +
-'<label for="editemail" class="col-sm-2 control-label">Email</label>' +
-'<div class="col-sm-10">' +
-'<input type="email" name="editemail" id="editemail" class="form-control">' +
-'</div></div>' +
-'<div class="form-group">' +
-'<div class="col-sm-offset-2 col-sm-10">' +
-'<button type="submit" name="edit" value="Edit" class="btn btn-default">Edit</button>' +
-'</div></div></form>';
-    
-
-    $(document).on('click', '.btn-info', function() {
-        console.log('You are in edit');
-        var id = $(this).attr('id');
-        var str = "<h3> Edit User - " + $(this).attr('name') + " </h3>";
-        var str = str.concat(editUser);
-        
-        $("#output").html(str);
-        return false;
-    });
-    
-    
-    /* Disable Users */
-    
-   $(document).on('click', '.btn-warning', function() {
-        var id = $(this).attr('id');
-        
-        $("#output").html("Disable");
-    });
-    
-    
-});
-</script>
-    
     
     
   </head>
@@ -146,38 +81,71 @@ var editUser = '<form class="form-horizontal" role="form">' +
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
   <a href="<c:url value='/siting/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
-  <a href="<c:url value='/siting/user/add'/>" class="btn btn-primary btn-lg" role="button">Add a User</a>
 </security:authorize>
 </div>
 
 
 
-  <h3> Users List </h3>
-  <table class='table table-striped'> 
-    <thead> <tr><th>Username</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Action</th></tr> </thead>
-    <tbody> 
-      <c:forEach items='${users}' var='user'> 
-        <tr> 
-        <td>${user.username}</td> 
-        <td>${user.firstName}</td> 
-        <td>${user.lastName}</td> 
-        <td>${user.email}</td> 
-        <td> 
-        <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-          <a href="<c:url value='/siting/user/edit'/>" class="btn btn-primary btn-lg" role="button">Edit</a>
-          <a href="<c:url value='/siting/user/disable'/>" class="btn btn-primary btn-lg" role="button">Disable</a>
-        </security:authorize>
-        </td>
-        </tr> 
-      </c:forEach> 
-    </tbody> 
-  </table> 
+  
+<h3> Add Users </h3>
+<form class="form-horizontal" action="http://cs3.calstatela.edu:4042/squirrels/service/user/register" role="form">
+  <div class="form-group">
+    <label for="addusername" class="col-sm-2 control-label">Username</label>
+    <div class="col-sm-10">
+      <input type="text" name="username" id="addusername" class="form-control" placeholder="Username">
+    </div>
+  </div>
 
-<!--
-<div id="output">
+  <div class="form-group">
+    <label for="addpassword" class="col-sm-2 control-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" name="password" id="addpassword" class="form-control" placeholder="Password">
+    </div>
+  </div>
 
-</div>
--->
+  <div class="form-group">
+    <label for="addfirstname" class="col-sm-2 control-label">First Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="firstname" id="addfirstname" class="form-control" placeholder="John">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="addlastname" class="col-sm-2 control-label">Last Name</label>
+    <div class="col-sm-10">
+      <input type="text" name="lastname" id="addlastname" class="form-control" placeholder="Doe">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="addemail" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" name="email" id="addemail" class="form-control" placeholder="Email">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="userrole" class="col-sm-2 control-label">User Role</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="userrole" name="userrole">
+        <option>ADMIN</option>
+        <option>APPROVER</option>
+        <option>REGULAR_USER</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="addusersbutton" class="btn btn-default">Add User</button>
+    </div>
+  </div>
+
+</form>  
+ 
+
+
+
 
       <br>
       <hr>

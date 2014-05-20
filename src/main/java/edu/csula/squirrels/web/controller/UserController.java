@@ -24,4 +24,42 @@ public class UserController {
     }
 
 
+
+    // Adding a user
+    @RequestMapping(value = "/user/adduser", method = RequestMethod.GET)
+    public String addUser( ModelMap models )
+    {
+        User user = new User();
+
+        models.addAttribute( "user", user );
+        return "user/adduser";
+    }
+
+	@RequestMapping( value =  "/siting/adduser", method = RequestMethod.POST)
+	public String addUser(  @ModelAttribute User user ) throws Exception
+	{
+		user = userDao.saveUser( user );
+		
+		return "redirect:/user/management";
+	}	
+
+
+    // Editing a user
+    @RequestMapping(value = "/user/edituser", method = RequestMethod.GET)
+    public String editUser( ModelMap models )
+    {
+        User user = new User();
+
+        models.addAttribute( "user", user );
+        return "user/edituser";
+    }
+
+	@RequestMapping( value =  "/siting/edituser", method = RequestMethod.POST)
+	public String editUser(  @ModelAttribute User user ) throws Exception
+	{
+		user = userDao.saveUser( user );
+		
+		return "redirect:/user/management";
+	}	
+
 }
