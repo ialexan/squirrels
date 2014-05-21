@@ -82,40 +82,40 @@
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-  <a href="<c:url value='/siting/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
+  <a href="<c:url value='/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
 </security:authorize>
 </div>
 
 
+<h3> Edit User </h3>
 
-    
-<form class="form-horizontal" role="form">
+<form:form modelAttribute="user" enctype="multipart/form-data" class="form-horizontal" role="form">
   
   <div class="form-group">
     <label for="editusername" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" name="editusername" id="editusername" class="form-control">
+      <form:input type="text" name="editusername" id="editusername" class="form-control">
     </div>
   </div>
 
   <div class="form-group">
     <label for="editpassword" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" name="editpassword" id="editpassword" class="form-control">
+      <form:input type="password" name="editpassword" id="editpassword" class="form-control">
     </div>
   </div>
 
   <div class="form-group">
     <label for="editfirstname" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
-      <input type="text" name="editfirstname" id="editfirstname" class="form-control">
+      <form:input type="text" name="editfirstname" id="editfirstname" class="form-control">
     </div>
   </div>
 
   <div class="form-group">
     <label for="editlastname" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-10">
-      <input type="text" name="editlastname" id="editlastname" class="form-control">
+      <form:input type="text" name="editlastname" id="editlastname" class="form-control">
     </div>
   </div>
 
@@ -123,7 +123,7 @@
   <div class="form-group">
     <label for="editemail" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" name="editemail" id="editemail" class="form-control">
+      <form:input type="email" name="editemail" id="editemail" class="form-control">
     </div>
   </div>
 

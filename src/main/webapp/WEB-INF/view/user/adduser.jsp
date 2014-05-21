@@ -80,54 +80,57 @@
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-  <a href="<c:url value='/siting/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
+  <a href="<c:url value='/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
 </security:authorize>
 </div>
 
 
 
   
-<h3> Add Users </h3>
-<form class="form-horizontal" action="http://cs3.calstatela.edu:4042/squirrels/service/user/register" role="form">
+<h3> Add User </h3>
+
+
+<form class="form-horizontal" role="form" action="<c:url value='/user/add' />" method="post">
+
   <div class="form-group">
-    <label for="addusername" class="col-sm-2 control-label">Username</label>
+    <label for="username" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <input type="text" name="username" id="addusername" class="form-control" placeholder="Username">
+      <input type="text" name="username" id="username" class="form-control" placeholder="Username">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="addpassword" class="col-sm-2 control-label">Password</label>
+    <label for="password" class="col-sm-2 control-label">Password</label>
     <div class="col-sm-10">
-      <input type="password" name="password" id="addpassword" class="form-control" placeholder="Password">
+      <input type="password" name="password" id="password" class="form-control" placeholder="Password">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="addfirstname" class="col-sm-2 control-label">First Name</label>
+    <label for="firstname" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
-      <input type="text" name="firstname" id="addfirstname" class="form-control" placeholder="John">
+      <input type="text" name="firstname" id="firstname" class="form-control" placeholder="John">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="addlastname" class="col-sm-2 control-label">Last Name</label>
+    <label for="lastname" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-10">
-      <input type="text" name="lastname" id="addlastname" class="form-control" placeholder="Doe">
+      <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Doe">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="addemail" class="col-sm-2 control-label">Email</label>
+    <label for="email" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" name="email" id="addemail" class="form-control" placeholder="Email">
+      <input type="email" name="email" id="email" class="form-control" placeholder="Email">
     </div>
   </div>
 
   <div class="form-group">
-    <label for="userrole" class="col-sm-2 control-label">User Role</label>
+    <label for="role" class="col-sm-2 control-label">User Role</label>
     <div class="col-sm-10">
-      <select class="form-control" id="userrole" name="userrole">
+      <select class="form-control" id="role" name="role">
         <option>ADMIN</option>
         <option>APPROVER</option>
         <option>REGULAR_USER</option>
