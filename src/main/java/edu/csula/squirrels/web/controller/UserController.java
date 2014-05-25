@@ -41,30 +41,41 @@ public class UserController {
 
 	@RequestMapping( value =  "/user/add", method = RequestMethod.POST)
 	public String addUser(  @RequestParam String username, @RequestParam String password,
-            @RequestParam String firstName, @RequestParam String lastName,
+            @RequestParam String firstname, @RequestParam String lastname,
             @RequestParam String email, @RequestParam String role ) throws Exception
 	{
+        User user = new User();
+        
+        user.setEmail( email );
+        user.setPassword( password );
+        user.setFirstName( firstname );
+        user.setLastName( lastname );
+        user.setUsername(username);
         user.getRoles().add( role );
-
-		user = userDao.saveUser( user );
+        
+        user = userDao.saveUser( user );
 		
 		return "redirect:/user/management";
 	}	
 
 
- //    // Editing a user
- //    @RequestMapping(value = "/user/edit", method = RequestMethod.GET)
- //    public String editUser( ModelMap models )
- //    {
- //        return "user/edituser";
- //    }
+    // Editing a user
+    @RequestMapping(value = "/user/edit", method = RequestMethod.GET)
+    public String editUser( ModelMap models, String username )
+    {
+        User user = userDao.getUser( username );
 
-	// @RequestMapping( value =  "/user/edit", method = RequestMethod.POST)
-	// public String editUser(  @ModelAttribute User user ) throws Exception
-	// {
-	// 	user = userDao.saveUser( user );
+
+        models.addAttribute( "user", user);
+        return "user/edituser";
+    }
+
+	@RequestMapping( value =  "/user/edit", method = RequestMethod.POST)
+	public String editUser(  @ModelAttribute User user ) throws Exception
+	{
+		user = userDao.saveUser( user );
 		
-	// 	return "redirect:/user/management";
-	// }	
+		return "redirect:/user/management";
+	}	
 
 }

@@ -82,7 +82,7 @@
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-  <a href="<c:url value='/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
+  <a href="<c:url value='/user/management'/>" class="btn btn-primary" role="button">List Users</a>
 </security:authorize>
 </div>
 

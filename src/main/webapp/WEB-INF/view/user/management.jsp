@@ -81,8 +81,8 @@
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-  <a href="<c:url value='/user/management'/>" class="btn btn-primary btn-lg" role="button">List Users</a>
-  <a href="<c:url value='/user/add'/>" class="btn btn-primary btn-lg" role="button">Add a User</a>
+  <a href="<c:url value='/user/management'/>" class="btn btn-primary" role="button">List Users</a>
+  <a href="<c:url value='/user/add'/>" class="btn btn-success" role="button">Add a User</a>
 </security:authorize>
 </div>
 
@@ -100,8 +100,8 @@
         <td>${user.email}</td> 
         <td> 
         <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-          <a href="<c:url value='/user/edit'/>" class="btn btn-primary btn-lg" role="button">Edit</a>
-          <a href="<c:url value='/user/disable'/>" class="btn btn-primary btn-lg" role="button">Disable</a>
+          <a href="<c:url value='/user/edit?username=${user.username}'/>" class="btn btn-info" role="button">Edit</a>
+          <a href="<c:url value='/user/disable?username=${user.username}'/>" class='btn btn-warning' role="button">Disable</a>
         </security:authorize>
         </td>
         </tr> 
@@ -109,11 +109,7 @@
     </tbody> 
   </table> 
 
-<!--
-<div id="output">
 
-</div>
--->
 
       <br>
       <hr>
