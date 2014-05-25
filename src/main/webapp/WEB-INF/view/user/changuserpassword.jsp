@@ -78,7 +78,7 @@
     <div class="container">
 
 
-<h2>User Management</h2>
+<h2>User Profile</h2>
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  

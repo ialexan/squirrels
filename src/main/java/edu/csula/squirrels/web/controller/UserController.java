@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import edu.csula.squirrels.security.SecurityUtils;
 
 import edu.csula.squirrels.model.dao.UserDao;
 import edu.csula.squirrels.model.User;
@@ -120,7 +120,7 @@ public class UserController {
 
 
     // Changing user password
-    @RequestMapping(value = "/user/changepassword", method = RequestMethod.GET)
+    @RequestMapping(value = "/changepassword", method = RequestMethod.GET)
     public String changePassword( ModelMap models, @RequestParam String username )
     {
         User user = userDao.getUser( username );
@@ -129,7 +129,7 @@ public class UserController {
         return "user/changuserpassword";
     }
 
-    @RequestMapping( value =  "/user/changepassword", method = RequestMethod.POST)
+    @RequestMapping( value =  "/changepassword", method = RequestMethod.POST)
     public String changePassword( @RequestParam String username, @RequestParam String password ) throws Exception
     {
         User user = userDao.getUser( username );
@@ -143,16 +143,16 @@ public class UserController {
 
 
     // User profile
-    @RequestMapping(value = "/user/myprofile", method = RequestMethod.GET)
-    public String myProfile( ModelMap models, @RequestParam Long userId )
+    @RequestMapping(value = "/myprofile", method = RequestMethod.GET)
+    public String myProfile( ModelMap models )
     {
-        User user = userDao.getUser( userId );
+        User user = SecurityUtils.getUser();
 
         models.addAttribute( "user", user);
         return "user/myprofile";
     }
 
-    @RequestMapping( value =  "/user/myprofile", method = RequestMethod.POST)
+    @RequestMapping( value =  "/myprofile", method = RequestMethod.POST)
     public String myProfile(  @RequestParam String username, ModelMap models,
             @RequestParam String firstname, @RequestParam String lastname,
             @RequestParam String email, @RequestParam String oldEmail ) throws Exception

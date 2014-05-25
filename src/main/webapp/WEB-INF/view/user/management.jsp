@@ -34,9 +34,9 @@
 
 <script>
 
-function disableUser( userId, userName ) {
+function disableUser(userId, user_name) {
     
-    var r = confirm("Are you sure you want to disable " + userName);
+    var r = confirm("Are you sure you want to disable - " + user_name + " ?");
     
     if (r == true) {
       jQuery.ajax({   
@@ -137,7 +137,7 @@ function disableUser( userId, userName ) {
         <td> 
         <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
           <a href="<c:url value='/user/edit?userId=${user.id}'/>" class="btn btn-info" role="button">Edit</a>
-          <button class='btn btn-warning' id="${user.id}" onclick="disableUser( ${user.id}, ${user.username} )">Disable</button>
+          <button class='btn btn-warning' id="${user.id}" onclick="disableUser(${user.id}, '${user.username}')">Disable</button>
         </security:authorize>
         </td>
         </tr> 
