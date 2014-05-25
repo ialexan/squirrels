@@ -78,4 +78,15 @@ public class UserController {
 		return "redirect:/user/management";
 	}	
 
+
+    // Disabling a user
+    @RequestMapping(value = "/user/disable")
+    public String editUser( ModelMap models, String username )
+    {
+        // User user = userDao.getUser( username );
+
+        models.addAttribute( "disableduser", user);
+        return "redirect:/user/management";
+    }
+
 }
