@@ -30,7 +30,25 @@
     
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    
+ 
+
+<script>
+jQuery(document).ready(function() {
+    jQuery('.btn-warning').click(function(){
+        var id = jQuery(this).attr('id');
+        jQuery.ajax({   
+            url:"<c:url value='/user/disableuser?userId='/>"+id,
+            success:function(data){
+                /* if(data==-1)
+                    alert('Assigned to someone else'); */
+                jQuery("#"+id).parent("td").parent("tr").fadeOut();   
+            }
+        });
+        return false;
+    });
+});
+</script>
+
     
   </head>
 
@@ -101,7 +119,7 @@
         <td> 
         <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
           <a href="<c:url value='/user/edit?username=${user.username}'/>" class="btn btn-info" role="button">Edit</a>
-          <a href="<c:url value='/user/disable?username=${user.username}'/>" class='btn btn-warning' role="button">Disable</a>
+          <button class='btn btn-warning' id="${user.id}">Disable</button>
         </security:authorize>
         </td>
         </tr> 

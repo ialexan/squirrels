@@ -76,10 +76,18 @@
     <div class="container">
 
 
+
 <h2>User Management</h2>
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+  <c:if test="${status=='user already exists'}">
+    <script>
+        alert("User already exists, please change username or email.");
+    </script>
+  </c:if>
+
+
   <a href="<c:url value='/user/management'/>" class="btn btn-primary" role="button">List Users</a>
 </security:authorize>
 </div>

@@ -34,8 +34,8 @@
 jQuery(document).ready(function() {
     jQuery('.btn-info').click(function(){
         var id = jQuery(this).attr('id');
-        jQuery.ajax({
-            url:'http://cs3.calstatela.edu:4042/squirrels/service/siting/verify?action=accept&sitingId='+id,
+        jQuery.ajax({    
+            url:"<c:url value='/service/siting/verify?action=accept&sitingId='/>"+id,
             success:function(data){
                 /* if(data==-1)
                     alert('Assigned to someone else'); */
@@ -47,8 +47,8 @@ jQuery(document).ready(function() {
     
     jQuery('.btn-warning').click(function(){
         var id = jQuery(this).attr('id');
-        jQuery.ajax({
-            url:'http://cs3.calstatela.edu:4042/squirrels/service/siting/verify?action=reject&sitingId='+id,
+        jQuery.ajax({   
+            url:"<c:url value='/service/siting/verify?action=reject&sitingId='/>"+id,
             success:function(data){
                 jQuery("#"+id).parent("td").parent("tr").fadeOut();   
             }

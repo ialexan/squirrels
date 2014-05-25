@@ -76,7 +76,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getUserList()
     {
-        String query = "from User order by id";
+        String query = "from User where enabled is true order by id desc";
 
         return entityManager.createQuery( query, User.class ).getResultList();
     }

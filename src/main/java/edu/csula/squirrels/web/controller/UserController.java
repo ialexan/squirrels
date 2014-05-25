@@ -42,26 +42,35 @@ public class UserController {
 	@RequestMapping( value =  "/user/add", method = RequestMethod.POST)
 	public String addUser(  @RequestParam String username, @RequestParam String password,
             @RequestParam String firstname, @RequestParam String lastname,
-            @RequestParam String email, @RequestParam String role ) throws Exception
+            @RequestParam String email, @RequestParam String role, ModelMap models ) throws Exception
 	{
-        User user = new User();
-        
-        user.setEmail( email );
-        user.setPassword( password );
-        user.setFirstName( firstname );
-        user.setLastName( lastname );
-        user.setUsername(username);
-        user.getRoles().add( role );
-        
-        user = userDao.saveUser( user );
-		
-		return "redirect:/user/management";
+        User user = userDao.getUser( username, email );
+
+        if( user == null )
+        {
+            user = new User();
+            user.setEmail( email );
+            user.setPassword( password );
+            user.setFirstName( firstname );
+            user.setLastName( lastname );
+            user.setUsername(username);
+            user.getRoles().add( role );
+            user = userDao.saveUser( user );
+
+            return "redirect:/user/management";
+        }
+        else
+        {
+            models.addAttribute( "status", "user already exists");
+            return "user/adduser";
+        }
 	}	
+
 
 
     // Editing a user
     @RequestMapping(value = "/user/edit", method = RequestMethod.GET)
-    public String editUser( ModelMap models, String username )
+    public String editUser( ModelMap models, @RequestParam String username )
     {
         User user = userDao.getUser( username );
 
@@ -80,13 +89,17 @@ public class UserController {
 
 
     // Disabling a user
-    @RequestMapping(value = "/user/disable")
-    public String editUser( ModelMap models, String username )
+    @RequestMapping(value = "/user/disableuser", method = RequestMethod.GET)
+    public String disableUser( @RequestParam Long userId, ModelMap models )
     {
-        // User user = userDao.getUser( username );
+        User user = userDao.getUser( userId );
 
-        models.addAttribute( "disableduser", user);
-        return "redirect:/user/management";
+        user.setEnabled(false);
+
+        user = userDao.saveUser( user );
+
+        models.put( "status", "disabled");
+        return "jsonView";
     }
 
 }
