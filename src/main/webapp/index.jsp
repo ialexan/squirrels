@@ -119,7 +119,9 @@
 
       <div id="footer">
       	<div class="container">
-        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')"> <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
+        	<p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; 
+          <security:authorize access="isAuthenticated()"> <a href="<c:url value='/user/myprofile' />" >My Profile</a> &nbsp;&nbsp; | &nbsp;&nbsp; </security:authorize>  
+          <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')"> <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
       	</div>
       </div>
       

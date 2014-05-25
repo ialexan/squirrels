@@ -33,20 +33,38 @@
  
 
 <script>
-jQuery(document).ready(function() {
-    jQuery('.btn-warning').click(function(){
-        var id = jQuery(this).attr('id');
-        jQuery.ajax({   
-            url:"<c:url value='/user/disableuser?userId='/>"+id,
+
+function disableUser( userId, userName ) {
+    
+    var r = confirm("Are you sure you want to disable " + userName);
+    
+    if (r == true) {
+      jQuery.ajax({   
+            url:"<c:url value='/user/disableuser?userId='/>"+userId,
             success:function(data){
                 /* if(data==-1)
                     alert('Assigned to someone else'); */
-                jQuery("#"+id).parent("td").parent("tr").fadeOut();   
+                jQuery("#"+userId).parent("td").parent("tr").fadeOut();   
             }
-        });
-        return false;
-    });
-});
+        });    
+    } 
+    
+}
+
+// jQuery(document).ready(function() {
+//     jQuery('.btn-warning').click(function(){
+//         var id = jQuery(this).attr('id');
+//         jQuery.ajax({   
+//             url:"<c:url value='/user/disableuser?userId='/>"+id,
+//             success:function(data){
+//                 /* if(data==-1)
+//                     alert('Assigned to someone else'); */
+//                 jQuery("#"+id).parent("td").parent("tr").fadeOut();   
+//             }
+//         });
+//         return false;
+//     });
+// });
 </script>
 
     
@@ -118,8 +136,8 @@ jQuery(document).ready(function() {
         <td>${user.email}</td> 
         <td> 
         <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
-          <a href="<c:url value='/user/edit?username=${user.username}'/>" class="btn btn-info" role="button">Edit</a>
-          <button class='btn btn-warning' id="${user.id}">Disable</button>
+          <a href="<c:url value='/user/edit?userId=${user.id}'/>" class="btn btn-info" role="button">Edit</a>
+          <button class='btn btn-warning' id="${user.id}" onclick="disableUser( ${user.id}, ${user.username} )">Disable</button>
         </security:authorize>
         </td>
         </tr> 

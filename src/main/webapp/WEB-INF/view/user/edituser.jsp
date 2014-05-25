@@ -82,40 +82,39 @@
 
 <div id="tabs"> 
 <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+  <c:if test="${status=='user already exists'}">
+    <script>
+        alert("User already exists, please change the edited username or email.");
+    </script>
+  </c:if>
+
   <a href="<c:url value='/user/management'/>" class="btn btn-primary" role="button">List Users</a>
 </security:authorize>
 </div>
 
 
-<h3> Edit User </h3>
+<h3> Edit User - ${user.username} - <a href="<c:url value='/user/changepassword?username=${user.username}'/>" class="btn btn-warning">change password</a></h3>
 
-<form:form modelAttribute="user" enctype="multipart/form-data" class="form-horizontal" role="form">
+<form class="form-horizontal" role="form" action="<c:url value='/user/edit' />" method="post">
   
   <div class="form-group">
     <label for="editusername" class="col-sm-2 control-label">Username</label>
     <div class="col-sm-10">
-      <form:input type="text" name="editusername" id="editusername" class="form-control">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="editpassword" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-      <form:input type="password" name="editpassword" id="editpassword" class="form-control">
+      <input type="text" name="username" id="editusername" class="form-control" value="${user.username}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="editfirstname" class="col-sm-2 control-label">First Name</label>
     <div class="col-sm-10">
-      <form:input type="text" name="editfirstname" id="editfirstname" class="form-control">
+      <input type="text" name="firstname" id="editfirstname" class="form-control" value="${user.firstName}">
     </div>
   </div>
 
   <div class="form-group">
     <label for="editlastname" class="col-sm-2 control-label">Last Name</label>
     <div class="col-sm-10">
-      <form:input type="text" name="editlastname" id="editlastname" class="form-control">
+      <input type="text" name="lastname" id="editlastname" class="form-control" value="${user.lastName}">
     </div>
   </div>
 
@@ -123,18 +122,41 @@
   <div class="form-group">
     <label for="editemail" class="col-sm-2 control-label">Email</label>
     <div class="col-sm-10">
-      <form:input type="email" name="editemail" id="editemail" class="form-control">
+      <input type="email" name="email" id="editemail" class="form-control" value="${user.email}">
     </div>
   </div>
 
+
+  <div class="form-group">
+    <label for="role" class="col-sm-2 control-label">User Role</label>
+    <div class="col-sm-10">
+      <select class="form-control" id="role" name="role">
+        <c:forEach items='${user.roles}' var='role'> 
+          <option selected>${role}</option>
+          <c:if test="${role=='REGULAR_USER'}">
+            <option>ADMIN</option> <option>APPROVER</option>
+          </c:if>
+          <c:if test="${role=='APPROVER'}">
+            <option>ADMIN</option> <option>REGULAR_USER</option>
+          </c:if>
+          <c:if test="${role=='ADMIN'}">
+            <option>APPROVER</option> <option>REGULAR_USER</option>
+          </c:if>
+        </c:forEach> 
+      </select>
+    </div>
+  </div>
+
+  <input type="hidden" name="oldUsername" value="${user.username}" /> 
+  <input type="hidden" name="oldEmail" value="${user.email}" /> 
+
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" name="edit" value="Edit" class="btn btn-default">Edit</button>
+      <button type="submit" name="edit" value="Edit" class="btn btn-default">Edit User</button>
     </div>
   </div>
 
 </form>
-
 
 
 
