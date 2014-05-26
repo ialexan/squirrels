@@ -53,6 +53,18 @@ public class UserDaoImpl implements UserDao {
             .getResultList();
         return users.size() == 0 ? null : users.get( 0 );
     }
+
+    @Override
+    public User getUserByEmail( String email )
+    {
+        String query = "from User where email = :email";    
+        
+        List<User> users = entityManager.createQuery( query, User.class )
+            .setParameter( "email", email )
+            .getResultList();
+        return users.size() == 0 ? null : users.get( 0 );
+    }
+
     
     @Override
     public User getUserByPassword( String username, String password){

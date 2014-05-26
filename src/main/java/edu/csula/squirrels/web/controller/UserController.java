@@ -15,6 +15,7 @@ import edu.csula.squirrels.security.SecurityUtils;
 
 import edu.csula.squirrels.model.dao.UserDao;
 import edu.csula.squirrels.model.User;
+import edu.csula.squirrels.util.MD5;
 
 
 @Controller
@@ -135,7 +136,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/changepassword", method = RequestMethod.GET)
-    public String changePassword( ModelMap models, @RequestParam String username )
+    public String changeUserPassword( ModelMap models, @RequestParam String username )
     {
         User user = userDao.getUser( username );
 
@@ -149,7 +150,7 @@ public class UserController {
         User user = userDao.getUser( username );
         User currentUser = SecurityUtils.getUser(); 
 
-        user.setPassword( password );
+        user.setPassword( new MD5( password ).getEncryptedValue() );
         user = userDao.saveUser( user );
 
              
@@ -190,7 +191,7 @@ public class UserController {
         }
         else {
 
-            User user = userDao.getUser( username, email );
+            User user = userDao.getUserByEmail( email );
 
             if( user == null ) {
                 user = userDao.getUser( username );
@@ -200,11 +201,11 @@ public class UserController {
                 user.setLastName( lastname );
                 user = userDao.saveUser( user );
 
-                return "redirect:/";
+                return "user/myprofile?username=" + user.getUsername();
             }
             else {
                 models.addAttribute( "status", "user already exists");
-                return "user/myprofile";
+                return "user/myprofile?username=" + user.getUsername();
             }
         }
     }   

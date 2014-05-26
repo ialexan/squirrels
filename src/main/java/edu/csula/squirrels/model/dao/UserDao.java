@@ -13,6 +13,8 @@ public interface UserDao {
     User getUser( String username, String email );
     
     User getUserByPassword (String username, String password);
+
+    User getUserByEmail( String email ); 
     
     List<User> getUserList();
     

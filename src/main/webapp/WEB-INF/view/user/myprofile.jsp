@@ -80,6 +80,12 @@
 
 <div id="tabs"> 
 
+  <c:if test="${status=='user already exists'}">
+    <script>
+        alert("User already exists, please change username or email.");
+    </script>
+  </c:if>
+
 
 <h3> My Profile - ${user.username} - <a href="<c:url value='/changepassword?username=${user.username}'/>" class="btn btn-warning">change password</a></h3>
 
