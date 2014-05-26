@@ -83,7 +83,7 @@
 
 <h3> My Profile - ${user.username} - <a href="<c:url value='/changepassword?username=${user.username}'/>" class="btn btn-warning">change password</a></h3>
 
-<form class="form-horizontal" role="form" action="<c:url value='/user/myprofile' />" method="post">
+<form class="form-horizontal" role="form" action="<c:url value='/myprofile' />" method="post">
   
   <div class="form-group">
     <label for="editfirstname" class="col-sm-2 control-label">First Name</label>

@@ -93,7 +93,7 @@
 </div>
 
 
-<h3> Edit User - ${user.username} - <a href="<c:url value='/changepassword?username=${user.username}'/>" class="btn btn-warning">change password</a></h3>
+<h3> Edit User - ${user.username} - <a href="<c:url value='/user/changepassword?username=${user.username}'/>" class="btn btn-warning">change password</a></h3>
 
 <form class="form-horizontal" role="form" action="<c:url value='/user/edit' />" method="post">
   

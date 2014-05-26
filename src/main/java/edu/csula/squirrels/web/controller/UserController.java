@@ -126,9 +126,18 @@ public class UserController {
         User user = userDao.getUser( username );
         User currentUser = SecurityUtils.getUser(); 
 
-        if ( !user.getUsername().equals(currentUser.getUsername()) || !currentUser.getRoles().toArray()[0].equals("APPROVER") || !currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
+        if ( !user.getUsername().equals(currentUser.getUsername()) ) {
             return "redirect:/myprofile";    
         }
+
+        models.addAttribute( "user", user);
+        return "user/changuserpassword";
+    }
+
+    @RequestMapping(value = "/user/changepassword", method = RequestMethod.GET)
+    public String changePassword( ModelMap models, @RequestParam String username )
+    {
+        User user = userDao.getUser( username );
 
         models.addAttribute( "user", user);
         return "user/changuserpassword";
@@ -139,10 +148,6 @@ public class UserController {
     {
         User user = userDao.getUser( username );
         User currentUser = SecurityUtils.getUser(); 
-
-        if ( !user.getUsername().equals(currentUser.getUsername()) || !currentUser.getRoles().toArray()[0].equals("APPROVER") || !currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
-            return "redirect:/myprofile";    
-        }
 
         user.setPassword( password );
         user = userDao.saveUser( user );
