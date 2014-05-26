@@ -88,10 +88,12 @@
         </security:authorize>
         -->
         
-        <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">
-        <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
-        <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a>
-        <a href="<c:url value='/siting/exportSightings'/>" class="btn btn-primary btn-lg" role="button">Export Sightings</a>
+        <security:authorize access="hasAnyRole('APPROVER')">
+          <a href="<c:url value='/siting/unverified'/>" class="btn btn-primary btn-lg" role="button">Unverified Sightings</a>
+          <a href="<c:url value='/siting/verified'/>" class="btn btn-primary btn-lg" role="button">Verified Sightings</a>
+        </security:authorize>  
+        <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+          <a href="<c:url value='/siting/exportSightings'/>" class="btn btn-primary btn-lg" role="button">Export Sightings</a>
         </security:authorize>
         </p>
       </div>

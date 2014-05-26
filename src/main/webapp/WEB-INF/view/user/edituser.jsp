@@ -130,20 +130,27 @@
   <div class="form-group">
     <label for="role" class="col-sm-2 control-label">User Role</label>
     <div class="col-sm-10">
-      <select class="form-control" id="role" name="role">
-        <c:forEach items='${user.roles}' var='role'> 
-          <option selected>${role}</option>
-          <c:if test="${role=='REGULAR_USER'}">
-            <option>ADMIN</option> <option>APPROVER</option>
-          </c:if>
-          <c:if test="${role=='APPROVER'}">
-            <option>ADMIN</option> <option>REGULAR_USER</option>
-          </c:if>
-          <c:if test="${role=='ADMIN'}">
-            <option>APPROVER</option> <option>REGULAR_USER</option>
-          </c:if>
-        </c:forEach> 
-      </select>
+      <label> <input id="regularcheckbox" name="regularcheckbox" type="checkbox"> Regular  &nbsp;&nbsp;&nbsp;</label> 
+      <label> <input id="approvercheckbox" name="approvercheckbox" type="checkbox"> Approver  &nbsp;&nbsp;&nbsp;</label> 
+      <label> <input id="admincheckbox" name="admincheckbox" type="checkbox"> Admin  &nbsp;&nbsp;&nbsp;</label> 
+
+    
+      <c:forEach items='${user.roles}' var='role'> 
+          
+        <c:if test="${role=='REGULAR_USER'}">
+          <script> document.getElementById("regularcheckbox").checked=true </script>
+        </c:if>
+
+        <c:if test="${role=='APPROVER'}">
+          <script> document.getElementById("approvercheckbox").checked=true </script> 
+        </c:if>
+
+        <c:if test="${role=='ADMIN'}">
+          <script> document.getElementById("admincheckbox").checked=true </script>
+        </c:if>
+
+      </c:forEach> 
+      
     </div>
   </div>
 

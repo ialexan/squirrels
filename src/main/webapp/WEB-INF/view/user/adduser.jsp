@@ -138,11 +138,9 @@
   <div class="form-group">
     <label for="role" class="col-sm-2 control-label">User Role</label>
     <div class="col-sm-10">
-      <select class="form-control" id="role" name="role">
-        <option>ADMIN</option>
-        <option>APPROVER</option>
-        <option>REGULAR_USER</option>
-      </select>
+      <label> <input id="regularcheckbox" name="regularcheckbox" type="checkbox"> Regular  &nbsp;&nbsp;&nbsp;</label> 
+      <label> <input id="approvercheckbox" name="approvercheckbox" type="checkbox"> Approver  &nbsp;&nbsp;&nbsp;</label> 
+      <label> <input id="admincheckbox" name="admincheckbox" type="checkbox"> Admin  &nbsp;&nbsp;&nbsp;</label> 
     </div>
   </div>
 

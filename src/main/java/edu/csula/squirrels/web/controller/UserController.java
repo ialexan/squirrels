@@ -43,7 +43,9 @@ public class UserController {
 	@RequestMapping( value =  "/user/add", method = RequestMethod.POST)
 	public String addUser(  @RequestParam String username, @RequestParam String password,
             @RequestParam String firstname, @RequestParam String lastname,
-            @RequestParam String email, @RequestParam String role, ModelMap models ) throws Exception
+            @RequestParam String email, @RequestParam(required = false) boolean admincheckbox, 
+            @RequestParam(required = false) boolean approvercheckbox, 
+            @RequestParam(required = false) boolean regularcheckbox, ModelMap models ) throws Exception
 	{
         User user = userDao.getUser( username, email );
 
@@ -55,7 +57,14 @@ public class UserController {
             user.setFirstName( firstname );
             user.setLastName( lastname );
             user.setUsername(username);
-            user.getRoles().add( role );
+
+            if ( admincheckbox )
+                user.getRoles().add( "ADMIN" );
+            if ( approvercheckbox )
+                user.getRoles().add( "APPROVER" );
+            if ( regularcheckbox )
+                user.getRoles().add( "REGULAR_USER" ); 
+            
             user = userDao.saveUser( user );
 
             return "redirect:/user/management";
@@ -81,9 +90,11 @@ public class UserController {
 
 	@RequestMapping( value =  "/user/edit", method = RequestMethod.POST)
 	public String editUser(  @RequestParam String username, @RequestParam String oldUsername,
-            @RequestParam String firstname, @RequestParam String lastname,
-            @RequestParam String email, @RequestParam String oldEmail,
-            @RequestParam String role, ModelMap models ) throws Exception
+            @RequestParam String firstname, @RequestParam String lastname, ModelMap models,
+            @RequestParam String email, @RequestParam String oldEmail, 
+            @RequestParam(required = false) boolean admincheckbox, 
+            @RequestParam(required = false) boolean approvercheckbox, 
+            @RequestParam(required = false) boolean regularcheckbox ) throws Exception
 	{
 		
         if ( username.equals(oldUsername) && email.equals(oldEmail) ) {
@@ -91,7 +102,14 @@ public class UserController {
 
             user.setFirstName( firstname );
             user.setLastName( lastname );
-            user.getRoles().add( role );
+            
+            if ( admincheckbox )
+                user.getRoles().add( "ADMIN" );
+            if ( approvercheckbox )
+                user.getRoles().add( "APPROVER" );
+            if ( regularcheckbox )
+                user.getRoles().add( "REGULAR_USER" ); 
+            
             user = userDao.saveUser( user );
 
             return "redirect:/user/management";
@@ -107,7 +125,14 @@ public class UserController {
                 user.setFirstName( firstname );
                 user.setLastName( lastname );
                 user.setUsername(username);
-                user.getRoles().add( role );
+                
+                if ( admincheckbox )
+                    user.getRoles().add( "ADMIN" );
+                if ( approvercheckbox )
+                    user.getRoles().add( "APPROVER" );
+                if ( regularcheckbox )
+                    user.getRoles().add( "REGULAR_USER" ); 
+                
                 user = userDao.saveUser( user );
 
                 return "redirect:/user/management";
@@ -118,7 +143,14 @@ public class UserController {
                     user.setFirstName( firstname );
                     user.setLastName( lastname );
                     user.setUsername(username);
-                    user.getRoles().add( role );
+                    
+                    if ( admincheckbox )
+                        user.getRoles().add( "ADMIN" );
+                    if ( approvercheckbox )
+                        user.getRoles().add( "APPROVER" );
+                    if ( regularcheckbox )
+                        user.getRoles().add( "REGULAR_USER" ); 
+                    
                     user = userDao.saveUser( user );
 
                     return "redirect:/user/management";  
@@ -130,7 +162,14 @@ public class UserController {
                     userCheck.setFirstName( firstname );
                     userCheck.setLastName( lastname );
                     userCheck.setUsername(username);
-                    userCheck.getRoles().add( role );
+                    
+                    if ( admincheckbox )
+                        userCheck.getRoles().add( "ADMIN" );
+                    if ( approvercheckbox )
+                        userCheck.getRoles().add( "APPROVER" );
+                    if ( regularcheckbox )
+                        userCheck.getRoles().add( "REGULAR_USER" ); 
+                    
                     userCheck = userDao.saveUser( userCheck );
 
                     return "redirect:/user/management";
