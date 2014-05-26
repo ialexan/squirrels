@@ -99,8 +99,10 @@ public class UserController {
         else {
 
             User user = userDao.getUser( username );
+            User userCheck = userDao.getUserByEmail( email );
 
-            if( user == null ) {
+            if( (user == null && userCheck == null) || ( user.getId() == userDao.getUser(oldUsername).getId() && userCheck == null ) 
+                || ( user == null && userCheck.getId() == userDao.getUser(oldUsername).getId() ) ) {
                 
                 user.setEmail( email );
                 user.setFirstName( firstname );
@@ -109,12 +111,13 @@ public class UserController {
                 user.getRoles().add( role );
                 user = userDao.saveUser( user );
 
-            return "redirect:/user/management";
+                return "redirect:/user/management";
             }
             else {
                 models.addAttribute( "status", "user already exists");
-                return "user/edituser";
-            }
+                models.addAttribute( "userId", userDao.getUser( oldUsername ).getId().toString() );
+                return "redirect:/user/edituser";  
+            }  
         }
 	}	
 
@@ -181,7 +184,7 @@ public class UserController {
     {
         
         if ( email.equals(oldEmail) ) {
-            User user = userDao.getUser( username );
+            User user = SecurityUtils.getUser();
 
             user.setFirstName( firstname );
             user.setLastName( lastname );
@@ -194,18 +197,18 @@ public class UserController {
             User user = userDao.getUserByEmail( email );
 
             if( user == null ) {
-                user = userDao.getUser( username );
+                user = SecurityUtils.getUser();;
 
                 user.setEmail( email );
                 user.setFirstName( firstname );
                 user.setLastName( lastname );
                 user = userDao.saveUser( user );
 
-                return "user/myprofile?username=" + user.getUsername();
+                return "redirect:/";
             }
             else {
                 models.addAttribute( "status", "user already exists");
-                return "user/myprofile?username=" + user.getUsername();
+                return "redirect:/myprofile";
             }
         }
     }   
