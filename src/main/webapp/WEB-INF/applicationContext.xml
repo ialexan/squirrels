@@ -66,7 +66,7 @@
         <security:intercept-url pattern="/siting/verified/**" access="hasAnyRole('APPROVER', 'ADMIN')" />  
         <security:intercept-url pattern="/siting/verified/**" access="hasAnyRole('APPROVER', 'ADMIN')" />  
         <security:intercept-url pattern="/siting/exportSightings/**" access="hasAnyRole('APPROVER', 'ADMIN')" /> 
-        <security:intercept-url pattern="/user/**" access="hasAnyRole('APPROVER', 'ADMIN')" /> 
+        <security:intercept-url pattern="/user/**" access="hasAnyRole('ADMIN')" /> 
     </security:http>
 
     <bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />

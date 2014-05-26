@@ -101,8 +101,7 @@ public class UserController {
             User user = userDao.getUser( username );
             User userCheck = userDao.getUserByEmail( email );
 
-            if( (user == null && userCheck == null) || ( user.getId() == userDao.getUser(oldUsername).getId() && userCheck == null ) 
-                || ( user == null && userCheck.getId() == userDao.getUser(oldUsername).getId() ) ) {
+            if (user == null && userCheck == null) {
                 
                 user.setEmail( email );
                 user.setFirstName( firstname );
@@ -113,11 +112,35 @@ public class UserController {
 
                 return "redirect:/user/management";
             }
-            else {
-                models.addAttribute( "status", "user already exists");
-                models.addAttribute( "userId", userDao.getUser( oldUsername ).getId().toString() );
-                return "redirect:/user/edituser";  
-            }  
+            else if (user != null) {
+                if ( user.getId().equals(userDao.getUser(oldUsername).getId()) && userCheck == null ) {    
+                    user.setEmail( email );
+                    user.setFirstName( firstname );
+                    user.setLastName( lastname );
+                    user.setUsername(username);
+                    user.getRoles().add( role );
+                    user = userDao.saveUser( user );
+
+                    return "redirect:/user/management";  
+                }              
+            }
+            else if (userCheck != null) {
+                if ( user == null && userCheck.getId().equals(userDao.getUserByEmail(oldEmail).getId()) ) {
+                    userCheck.setEmail( email );
+                    userCheck.setFirstName( firstname );
+                    userCheck.setLastName( lastname );
+                    userCheck.setUsername(username);
+                    userCheck.getRoles().add( role );
+                    userCheck = userDao.saveUser( userCheck );
+
+                    return "redirect:/user/management";
+                }
+            }
+            
+            models.addAttribute( "status", "useralreadyexists");
+            models.addAttribute( "userId", userDao.getUser( oldUsername ).getId().toString() );
+            return "/user/edituser";  
+            
         }
 	}	
 
@@ -157,7 +180,7 @@ public class UserController {
         user = userDao.saveUser( user );
 
              
-        if ( currentUser.getRoles().toArray()[0].equals("APPROVER") || currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
+        if ( currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
             return "redirect:/user/management";
         }
         else {

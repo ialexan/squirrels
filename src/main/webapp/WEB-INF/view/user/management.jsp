@@ -116,7 +116,7 @@ function disableUser(userId, user_name) {
 <h2>User Management</h2>
 
 <div id="tabs"> 
-<security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+<security:authorize access="hasAnyRole('ADMIN')">  
   <a href="<c:url value='/user/management'/>" class="btn btn-primary" role="button">List Users</a>
   <a href="<c:url value='/user/add'/>" class="btn btn-success" role="button">Add a User</a>
 </security:authorize>
@@ -135,7 +135,7 @@ function disableUser(userId, user_name) {
         <td>${user.lastName}</td> 
         <td>${user.email}</td> 
         <td> 
-        <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+        <security:authorize access="hasAnyRole('ADMIN')">  
           <a href="<c:url value='/user/edit?userId=${user.id}'/>" class="btn btn-info" role="button">Edit</a>
           <button class='btn btn-warning' id="${user.id}" onclick="disableUser(${user.id}, '${user.username}')">Disable</button>
         </security:authorize>
@@ -155,7 +155,7 @@ function disableUser(userId, user_name) {
           <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; 
           <security:authorize access="isAuthenticated()"> <a href="<c:url value='/myprofile' />" >My Profile</a> &nbsp;&nbsp;  
           </security:authorize>  
-          <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')"> | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
+          <security:authorize access="hasAnyRole('ADMIN')"> | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
         </div>
       </div>
       

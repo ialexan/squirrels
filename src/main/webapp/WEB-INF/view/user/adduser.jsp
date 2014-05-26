@@ -80,7 +80,7 @@
 <h2>User Management</h2>
 
 <div id="tabs"> 
-<security:authorize access="hasAnyRole('APPROVER', 'ADMIN')">  
+<security:authorize access="hasAnyRole('ADMIN')">  
   <c:if test="${status=='user already exists'}">
     <script>
         alert("User already exists, please change username or email.");
@@ -166,7 +166,7 @@
           <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; 
           <security:authorize access="isAuthenticated()"> <a href="<c:url value='/myprofile' />" >My Profile</a> &nbsp;&nbsp;  
           </security:authorize>  
-          <security:authorize access="hasAnyRole('APPROVER', 'ADMIN')"> | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
+          <security:authorize access="hasAnyRole('ADMIN')"> | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
         </div>
       </div>
       
