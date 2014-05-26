@@ -124,6 +124,11 @@ public class UserController {
     public String changePassword( ModelMap models, @RequestParam String username )
     {
         User user = userDao.getUser( username );
+        User currentUser = SecurityUtils.getUser(); 
+
+        if ( !user.getUsername().equals(currentUser.getUsername()) || !currentUser.getRoles().toArray()[0].equals("APPROVER") || !currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
+            return "redirect:/myprofile";    
+        }
 
         models.addAttribute( "user", user);
         return "user/changuserpassword";
@@ -133,11 +138,22 @@ public class UserController {
     public String changePassword( @RequestParam String username, @RequestParam String password ) throws Exception
     {
         User user = userDao.getUser( username );
+        User currentUser = SecurityUtils.getUser(); 
+
+        if ( !user.getUsername().equals(currentUser.getUsername()) || !currentUser.getRoles().toArray()[0].equals("APPROVER") || !currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
+            return "redirect:/myprofile";    
+        }
 
         user.setPassword( password );
         user = userDao.saveUser( user );
 
-        return "redirect:/user/management";
+             
+        if ( currentUser.getRoles().toArray()[0].equals("APPROVER") || currentUser.getRoles().toArray()[0].equals("ADMIN") ) {
+            return "redirect:/user/management";
+        }
+        else {
+            return "redirect:/";    
+        }
     }
 
 
