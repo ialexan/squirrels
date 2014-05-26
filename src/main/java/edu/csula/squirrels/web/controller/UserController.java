@@ -105,10 +105,18 @@ public class UserController {
             
             if ( admincheckbox )
                 user.getRoles().add( "ADMIN" );
+            else 
+                user.getRoles().remove( "ADMIN" );
+
             if ( approvercheckbox )
                 user.getRoles().add( "APPROVER" );
+            else 
+                user.getRoles().remove( "APPROVER" );
+
             if ( regularcheckbox )
                 user.getRoles().add( "REGULAR_USER" ); 
+            else 
+                user.getRoles().remove( "REGULAR_USER" );
             
             user = userDao.saveUser( user );
 
@@ -128,10 +136,18 @@ public class UserController {
                 
                 if ( admincheckbox )
                     user.getRoles().add( "ADMIN" );
+                else 
+                    user.getRoles().remove( "ADMIN" );
+
                 if ( approvercheckbox )
                     user.getRoles().add( "APPROVER" );
+                else 
+                    user.getRoles().remove( "APPROVER" );
+
                 if ( regularcheckbox )
                     user.getRoles().add( "REGULAR_USER" ); 
+                else 
+                    user.getRoles().remove( "REGULAR_USER" );
                 
                 user = userDao.saveUser( user );
 
@@ -146,10 +162,18 @@ public class UserController {
                     
                     if ( admincheckbox )
                         user.getRoles().add( "ADMIN" );
+                    else 
+                        user.getRoles().remove( "ADMIN" );
+
                     if ( approvercheckbox )
                         user.getRoles().add( "APPROVER" );
+                    else 
+                        user.getRoles().remove( "APPROVER" );
+
                     if ( regularcheckbox )
                         user.getRoles().add( "REGULAR_USER" ); 
+                    else 
+                        user.getRoles().remove( "REGULAR_USER" );
                     
                     user = userDao.saveUser( user );
 
@@ -162,13 +186,22 @@ public class UserController {
                     userCheck.setFirstName( firstname );
                     userCheck.setLastName( lastname );
                     userCheck.setUsername(username);
-                    
+
                     if ( admincheckbox )
                         userCheck.getRoles().add( "ADMIN" );
+                    else 
+                        userCheck.getRoles().remove( "ADMIN" );
+
                     if ( approvercheckbox )
                         userCheck.getRoles().add( "APPROVER" );
+                    else 
+                        userCheck.getRoles().remove( "APPROVER" );
+
                     if ( regularcheckbox )
                         userCheck.getRoles().add( "REGULAR_USER" ); 
+                    else 
+                        userCheck.getRoles().remove( "REGULAR_USER" );
+
                     
                     userCheck = userDao.saveUser( userCheck );
 
