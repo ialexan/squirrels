@@ -152,8 +152,8 @@ function disableUser(userId, user_name) {
 
       <div id="footer">
         <div class="container">
-          <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp; 
-            <security:authorize access="isAuthenticated()"> <a href="<c:url value='/myprofile' />" >My Profile</a> &nbsp;&nbsp;  
+          <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; 
+            <security:authorize access="isAuthenticated()"> | &nbsp;&nbsp; <a href="<c:url value='/myprofile' />" >My Profile</a> &nbsp;&nbsp;  
             </security:authorize>  
           </p>
         </div>

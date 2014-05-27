@@ -133,7 +133,7 @@
 
       <div id="footer">
         <div class="container">
-          <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; | &nbsp;&nbsp;  
+          <p class="text-muted">&#169; California State University Los Angeles 2014 &nbsp;&nbsp; 
           <security:authorize access="hasAnyRole('ADMIN')"> | &nbsp;&nbsp; <a href="<c:url value='/user/management' />" >User Management</a> </security:authorize> </p>
         </div>
       </div>
